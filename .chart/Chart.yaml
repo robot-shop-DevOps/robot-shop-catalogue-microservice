@@ -1,4 +1,4 @@
 apiVersion: v2
-name: user-microservice
+name: catalogue-microservice
 version: 1.0.0
-description: A Helm chart for user microservice k8s
+description: A Helm chart for catalogue microservice k8s
