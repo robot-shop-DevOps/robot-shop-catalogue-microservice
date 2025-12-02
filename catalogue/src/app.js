@@ -105,6 +105,18 @@ class CatalogueServiceApp {
       }
     });
 
+    // search with no text → return all products
+    this.app.get('/search', async (req, res) => {
+      if (!this.mongoConnected) return res.status(500).send('database not available');
+      try {
+        const products = await this.collection.find({}).toArray();
+        res.json(products);
+      } catch (e) {
+        req.log.error('ERROR', e);
+        res.status(500).send(e);
+      }
+    });
+
     // search text
     this.app.get('/search/:text', async (req, res) => {
       if (!this.mongoConnected) return res.status(500).send('database not available');
