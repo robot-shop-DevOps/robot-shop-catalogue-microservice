@@ -13,7 +13,13 @@ class CatalogueServiceApp {
     this.mongoUrl = 'mongodb://' + this.mongoHost + ':27017/catalogue';
 
     this.logger = pino({ level: 'info', prettyPrint: false, useLevelLabels: true });
-    this.expLogger = expPino({ logger: this.logger });
+    this.expLogger = expPino({
+      logger: this.logger,
+      autoLogging: {
+        ignorePaths: ['/health']
+      }
+    });
+
 
     this.app = express();
     this.setupMiddleware();
